@@ -1,0 +1,33 @@
+<div class="map-container">
+  <div class="controls">
+    <div>
+      <label for="graveyard-select">Select a graveyard:</label>
+      <select id="graveyard-select" [(ngModel)]="selectedGraveyardId" (change)="onGraveyardChange($event)">
+        <option value="">-- Select Graveyard --</option>
+        <option *ngFor="let graveyard of graveyards" [value]="graveyard.id">
+          {{ graveyard.name }}
+        </option>
+      </select>
+      <div *ngIf="graveyards.length === 0" class="error-message">
+        No graveyards found in the data
+      </div>
+      <div *ngIf="graveyards.length > 0" class="info-message">
+        {{ graveyards.length }} graveyards available
+      </div>
+    </div>
+    
+    <div class="status-legend">
+      <h4>Grave Status Legend:</h4>
+      <div class="legend-item" *ngFor="let status of uniqueStatuses">
+        <span class="color-box" [style.background-color]="statusColors[status] || statusColors['default']"></span>
+        <span>{{ statusLabels[status] || statusLabels['default'] }}</span>
+      </div>
+      <div class="legend-item">
+        <span class="color-box" [style.background-color]="statusColors['default']"></span>
+        <span>{{ statusLabels['default'] }}</span>
+      </div>
+    </div>
+  </div>
+  
+  <div #map class="map"></div>
+</div>

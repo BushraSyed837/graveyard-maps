@@ -1,0 +1,31 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+app-map {
+  flex: 1;
+  position: relative;
+}
+
+app-graveyard-list {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  app-graveyard-list {
+    position: static;
+    margin-top: 10px;
+    max-height: 40vh;
+  }
+}
